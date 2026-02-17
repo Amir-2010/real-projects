@@ -6,6 +6,10 @@ import time
 import mysql.connector as sql
 
 def gender_func():
+    """
+    in this function I write command of gender in the main page menu
+    this function is search in the database and find gender of persons and show it to user if user want and you can see most of peoples in the database are male or female
+    """
     cursor.execute("select gender from users where gender='male'")
     result_male = cursor.fetchall()
 
@@ -18,6 +22,9 @@ def gender_func():
     messagebox.showinfo("Info",f"males = {male} person\persons\nfemales = {female} person\persons")
 
 def get_average():
+    """
+    this function is for getting average of user ages who submit in the program
+    """
     cursor.execute("select user_age from users")
     result = list(cursor.fetchall())
     number = 0
@@ -33,6 +40,9 @@ def get_average():
         pass
 
 def sub_button():
+    """
+    this function is submit command and It just check the entry and list box and if they aren't empty it will add you into database with your info
+    """
     global entry_1
     global list_box_1
     global scale_1
@@ -54,6 +64,10 @@ def sub_button():
             messagebox.showerror("Error","fill in the list box")
 
 def porg_func():
+    """
+    this function is a bit different becuse this function is not for main page
+    this function is for loding page and It's progress bar command in the program
+    """
     for i in range(0,101,10):
         if i < 100:
             prog_1["value"]=i
@@ -72,6 +86,10 @@ def porg_func():
     main_page()
 
 def main_page():
+    """
+    this is main page of the program
+    after loding, window change and progress bar and the loding label are destroy and the back ground is change but the window still window
+    """
     global entry_1
     global list_box_1
     global scale_1
@@ -185,21 +203,24 @@ except:
                     );""")
     connection.commit()
 
+# in here I create loding window
 window = Tk()
 window.geometry("500x500")
 window.resizable(False,False)
 window.title("age")
 
+# this label is the loding window label and that text is wait a minnet until progress bar value = 100
 label_loding = Label(window,
                      text="Wait a minnet...",
                      font=("Arial",14,"bold"))
 label_loding.place(relx=0.5,y=50,anchor="center")
 
+# this is the loding page progress bar
 prog_1 = Progressbar(window,
                      length=400,
                      mode="determinate",)
 prog_1.place(relx=0.5,y=100,anchor="center")
 
+# in here I call prog_func becuse I want to start fill the progress bar with out any buttons
 porg_func()
 
-window.mainloop()
