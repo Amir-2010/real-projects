@@ -224,3 +224,4 @@ prog_1.place(relx=0.5,y=100,anchor="center")
 # in here I call prog_func becuse I want to start fill the progress bar with out any buttons
 porg_func()
 
+window.mainloop()
